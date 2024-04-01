@@ -1,0 +1,37 @@
+version: '3'
+services:
+  django:
+    build:
+      context: ..
+      dockerfile: development/Dockerfile.dev
+    volumes:
+      - ../:/home/developer/app
+    ports:
+      - "8001:8001"
+    depends_on:
+      - postgresql
+    env_file:
+      - dev.env
+    user: 1000:1000
+    networks:
+      - aaa
+
+  postgresql:
+    image: postgres:12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: motorshop
+    ports:
+      - "5432:5432"
+    networks:
+      - aaa
+
+volumes:
+  postgres_data:
+
+networks:
+  aaa:
+    external: true

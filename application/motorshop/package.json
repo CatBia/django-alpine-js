@@ -1,0 +1,27 @@
+{
+ 
+    "name": "motorshop",
+ 
+    "version": "1.0.0",
+ 
+    "scripts": {
+ 
+     
+    "tailwind:watch": "tailwindcss build -i motorcycle/static/css/input.css -o motorcycle/static/css/output.css --watch"
+ 
+    },
+ 
+    "devDependencies": {
+ 
+     
+    "tailwindcss": "^2.2.19"
+ 
+    },
+ 
+    "dependencies": {
+ 
+     
+    "npm-scripts": "^1.4.0"
+ 
+    }
+}

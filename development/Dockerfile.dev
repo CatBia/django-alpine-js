@@ -1,0 +1,14 @@
+FROM python:3.12
+RUN apt-get update && apt-get install -y libpq-dev
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+RUN nvm install 20
+ARG UNAME=developer
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -g $GID -o $UNAME
+RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+USER $UNAME
+COPY .. /home/developer/app
+WORKDIR /home/developer/app
+RUN $HOME/app/development/venv/bin/pip install -r $HOME/app/development/requirements.txt
+RUN cp $HOME/app/development/.bashrc $HOME
